@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <classPathEntry    location="D:\\workspace\wx-manager\WebContent\WEB-INF\lib\mysql-connector-java-5.1.x-bin.jar"/>
+  <context id="context1">
+ 	 <commentGenerator>
+        <property name="suppressDate" value="true"/>
+        <property name="suppressAllComments" value="true"/>
+    </commentGenerator>
+    <jdbcConnection connectionURL="jdbc:mysql://120.76.192.62:3306/checkin_dev?useUnicode=true&amp;characterEncoding=UTF-8" driverClass="com.mysql.jdbc.Driver" password="lufei" userId="root" />
+    <javaModelGenerator targetPackage="com.hz.business.base.pojo" targetProject="ssm" >
+    	<property name="enableSubPackages" value="true"/>
+        <property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+    <sqlMapGenerator targetPackage="com.hz.business.base.xml" targetProject="ssm" />
+    <javaClientGenerator targetPackage="com.hz.business.base.dao" targetProject="ssm" type="XMLMAPPER" />
+    
+    
+ 
+    
+  <!--    <table tableName="ci_user" domainObjectName="User"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table> -->
+     
+<!--     <table tableName="ci_verify" domainObjectName="Verify"  enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">    </table>
+     -->
+    <!--  <table tableName="ci_user" domainObjectName="User"  enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">    </table> -->
+  
+  	<!--  <table tableName="ci_sign" domainObjectName="Sign"  enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">    </table>  -->
+  
+  	<!-- <table tableName="ci_sign_rule" domainObjectName="SignRule"  enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">    </table> -->
+  	
+  	<!-- <table tableName="ci_group" domainObjectName="Group"  enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">    </table> -->
+  
+  
+  	<!--  <table tableName="ci_resource" domainObjectName="Resource"  enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">    </table>  -->
+  	
+  	
+  	 <table tableName="ci_group_user" domainObjectName="GroupUser"  enableCountByExample="true" enableUpdateByExample="true" enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="true">    </table>
+  	
+  	
+  	
+  </context>
+</generatorConfiguration>

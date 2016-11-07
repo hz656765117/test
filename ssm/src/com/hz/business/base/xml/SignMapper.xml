@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hz.business.base.dao.SignMapper">
+  <resultMap id="BaseResultMap" type="com.hz.business.base.pojo.Sign">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sign_rule_id" jdbcType="VARCHAR" property="signRuleId" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="sign_time" jdbcType="VARCHAR" property="signTime" />
+    <result column="sign_person_id" jdbcType="VARCHAR" property="signPersonId" />
+    <result column="receive_id" jdbcType="VARCHAR" property="receiveId" />
+    <result column="group_id" jdbcType="VARCHAR" property="groupId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sign_rule_id, latitude, longitude, address, url, type, sign_time, sign_person_id, 
+    receive_id, group_id
+  </sql>
+  <select id="selectByExample" parameterType="com.hz.business.base.pojo.SignExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from ci_sign
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ci_sign
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ci_sign
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hz.business.base.pojo.SignExample">
+    delete from ci_sign
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hz.business.base.pojo.Sign">
+    insert into ci_sign (id, sign_rule_id, latitude, 
+      longitude, address, url, 
+      type, sign_time, sign_person_id, 
+      receive_id, group_id)
+    values (#{id,jdbcType=INTEGER}, #{signRuleId,jdbcType=VARCHAR}, #{latitude,jdbcType=DOUBLE}, 
+      #{longitude,jdbcType=DOUBLE}, #{address,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{signTime,jdbcType=VARCHAR}, #{signPersonId,jdbcType=VARCHAR}, 
+      #{receiveId,jdbcType=VARCHAR}, #{groupId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hz.business.base.pojo.Sign">
+    insert into ci_sign
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="signRuleId != null">
+        sign_rule_id,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="signTime != null">
+        sign_time,
+      </if>
+      <if test="signPersonId != null">
+        sign_person_id,
+      </if>
+      <if test="receiveId != null">
+        receive_id,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="signRuleId != null">
+        #{signRuleId,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="signTime != null">
+        #{signTime,jdbcType=VARCHAR},
+      </if>
+      <if test="signPersonId != null">
+        #{signPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null">
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hz.business.base.pojo.SignExample" resultType="java.lang.Integer">
+    select count(*) from ci_sign
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ci_sign
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.signRuleId != null">
+        sign_rule_id = #{record.signRuleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latitude != null">
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.longitude != null">
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.signTime != null">
+        sign_time = #{record.signTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signPersonId != null">
+        sign_person_id = #{record.signPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveId != null">
+        receive_id = #{record.receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupId != null">
+        group_id = #{record.groupId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ci_sign
+    set id = #{record.id,jdbcType=INTEGER},
+      sign_rule_id = #{record.signRuleId,jdbcType=VARCHAR},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      address = #{record.address,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
+      sign_time = #{record.signTime,jdbcType=VARCHAR},
+      sign_person_id = #{record.signPersonId,jdbcType=VARCHAR},
+      receive_id = #{record.receiveId,jdbcType=VARCHAR},
+      group_id = #{record.groupId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hz.business.base.pojo.Sign">
+    update ci_sign
+    <set>
+      <if test="signRuleId != null">
+        sign_rule_id = #{signRuleId,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="signTime != null">
+        sign_time = #{signTime,jdbcType=VARCHAR},
+      </if>
+      <if test="signPersonId != null">
+        sign_person_id = #{signPersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveId != null">
+        receive_id = #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hz.business.base.pojo.Sign">
+    update ci_sign
+    set sign_rule_id = #{signRuleId,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      address = #{address,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      sign_time = #{signTime,jdbcType=VARCHAR},
+      sign_person_id = #{signPersonId,jdbcType=VARCHAR},
+      receive_id = #{receiveId,jdbcType=VARCHAR},
+      group_id = #{groupId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+    <resultMap id="BaseResultMap1" type="com.hz.business.base.pojo.Sign">
+     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sign_rule_id" jdbcType="VARCHAR" property="signRuleId" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="sign_time" jdbcType="VARCHAR" property="signTime" />
+    <result column="sign_person_id" jdbcType="VARCHAR" property="signPersonId" />
+    <result column="receive_id" jdbcType="VARCHAR" property="receiveId" />
+    <result column="group_id" jdbcType="VARCHAR" property="groupId" />
+    <result column="name" jdbcType="VARCHAR" property="signPersonName" />
+  </resultMap>
+  
+     <select id="selectGroupSign" parameterType="com.hz.business.base.pojo.Sign" resultMap="BaseResultMap1">
+    select 
+    cs.id, cs.sign_rule_id, cs.latitude, cs.longitude, cs.address, cs.url, cs.type, cs.sign_time, cs.sign_person_id, 
+    cs.receive_id, cs.group_id ,cu.name
+    from ci_sign cs , ci_user cu
+    where 1 = 1  and cs.sign_person_id = cu.id
+  	 <if test="groupId != null">
+       and  cs.group_id = #{groupId,jdbcType=VARCHAR} 
+      </if>
+      <if test="type != null">
+       and  cs.type = #{type,jdbcType=INTEGER} 
+      </if>
+      
+      <if test="stype != null">
+	      <if test="stype == 1">
+	      </if>
+	      <if test="stype == 2">
+	    	  and   cs.sign_person_id = #{userId,jdbcType=VARCHAR} 
+	      </if>
+	      <if test="stype == 3">
+	     	  and   cs.receive_id = #{userId,jdbcType=VARCHAR} 
+	      </if>
+	      <if test="stype == 4">
+	      		and (  cs.sign_person_id = #{userId,jdbcType=VARCHAR}  or cs.receive_id = #{userId,jdbcType=VARCHAR}  )
+	      </if>
+      </if>
+      
+     
+      order by cs.sign_time desc
+  </select>
+  
+  
+</mapper>

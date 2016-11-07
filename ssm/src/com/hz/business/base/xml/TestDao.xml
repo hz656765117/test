@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hz.business.base.dao.TestDao">
+	<cache />
+
+	<resultMap id="userMap" type="com.hz.business.base.pojo.User">
+		<id property="USER_ID" column="uid" />
+		<result property="USER_NAME" column="name" />
+		<result property="PASSWORD" column="pwd" />
+		<result property="TYPE" column="type" />
+		<result property="AGE" column="age" />
+		<result property="GENDER" column="gender" />
+		<result property="CREATE_TIME" column="createtime" />
+		<result property="MYPIC" column="mypic" />
+ 	</resultMap>
+ 	
+	<select id="selectUserByGroupId" resultMap="userMap" useCache="false">
+		SELECT * FROM jt_user WHERE name = #{name} and pwd = #{pwd}
+	</select>
+ 
+</mapper>
